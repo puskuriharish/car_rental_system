@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Admin - Manage Bookings</title>
+</head>
+<body>
+    <h2>Manage Customer Bookings</h2>
+    <a href="/admin_home">Back to Admin Dashboard</a>
+    <a href="/logout">Logout</a>
+    <div>
+        {% for booking in bookings %}
+        <div>
+            <p>Customer: {{ booking[1] }}</p>
+            <p>Car: {{ booking[2] }} - {{ booking[3] }}</p>
+            <p>Start Date: {{ booking[4] }}</p>
+            <p>End Date: {{ booking[5] }}</p>
+            <p>Total Price: ${{ booking[6] }}</p>
+            <p>Status: {{ booking[7] }}</p>
+            <a href="/update_booking/{{ booking[0] }}/Approved">Approve</a>
+            <a href="/update_booking/{{ booking[0] }}/Rejected">Reject</a>
+        </div>
+        {% endfor %}
+    </div>
+</body>
+</html>

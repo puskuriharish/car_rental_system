@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+</head>
+<body>
+    <h1>Search Results</h1>
+    <div>
+        <div class="container">
+            <h3>Available Cars</h3>
+            {% for car in cars %}
+            <p>{{ car[1] }} - {{ car[2] }} ({{ car[4] }}) {{car[5]}} {{car[6]}} {{car[7]}}</p>
+            <img src="{{ url_for('static', filename='uploads/' + car[3] | string) }}" alt="Car Image" width="150">
+            <div class="car-actions">
+                <a href="/update_car/{{ car[0] }}">Update</a>
+                <a href="/delete_car/{{ car[0] }}">Delete</a>
+            </div>
+            {% endfor %}
+        </div>
+    <a href="/search">Back to Search</a>
+</body>
+</html>

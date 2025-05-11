@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Update Car</title>
+</head>
+<body>
+    <h2>Update Car</h2>
+    <form action="/update_car/{{ car[0] }}" method="post">
+        <input type="text" name="car_name" value="{{ car[1] }}" required>
+        <input type="text" name="brand_name" value="{{ car[2] }}" required>
+        <input type="text" name="image" value="{{ car[3] }}" required>
+        <input type="number" name="model_year" value="{{ car[4] }}" required>
+        <input type="text" name="color" value="{{ car[5] }}" required>
+        <select name="transmission">
+            <option value="manual">Manual</option>
+            <option value="automatic">Automatic</option>
+        </select>
+        <input type="number" name="price" value="{{ car[7] }}" required>
+        <button type="submit">Update Car</button>
+    </form>
+</body>
+</html>

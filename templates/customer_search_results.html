@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    
+    <style>
+        /* General Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+
+        /* Heading Styles */
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center; /* Center the heading */
+        }
+
+        /* Search Results Container */
+        .results-container {
+            display: flex;
+            flex-wrap: wrap; /* Allow items to wrap */
+            justify-content: center; /* Center items */
+            gap: 20px; /* Space between items */
+        }
+
+        /* Individual Car Card */
+        .car-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 15px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s; /* Smooth transform */
+            text-align: center; /* Center text */
+            width: 200px; /* Set width for cards */
+        }
+
+        .car-card:hover {
+            transform: scale(1.05); /* Slight zoom effect on hover */
+        }
+
+        /* Responsive Image */
+        .car-card img {
+            max-width: 100%; /* Responsive image */
+            height: auto; /* Maintain aspect ratio */
+            border-radius: 5px; /* Rounded corners for images */
+        }
+
+        /* Car Details */
+        .car-details {
+            margin: 10px 0;
+            color: #555; /* Grey color for details */
+        }
+
+        /* Price Style */
+        .car-price {
+            font-size: 1.2em; /* Larger font size for price */
+            color: #28a745; /* Green color for price */
+            font-weight: bold; /* Make the price bold */
+        }
+
+        /* Back Link */
+        .back-link {
+            display: block;
+            margin-top: 20px; /* Space above the link */
+            text-align: center; /* Center the link */
+            color: #007BFF; /* Link color */
+            text-decoration: none; /* Remove underline */
+            font-size: 1.1em; /* Slightly larger font */
+        }
+
+        .back-link:hover {
+            text-decoration: underline; /* Underline on hover */
+        }
+    </style>
+
+</head>
+<body>
+    <h2>Search Results</h2>
+    <div>
+        {% for car in cars %}
+        <div>
+            <img src="{{ url_for('static', filename='uploads/' + car[3]) }}" width="150">
+            <p>{{ car[1] }} - {{ car[2] }} {{ car[5] }}</p>
+            <p>Transmission: {{ car[6] }}</p>
+            <p>Modelyear: {{car[4]}}</p>
+            <p>Price: ${{ car[7] }} per day</p>
+            <a href="/book_car/{{ car[0] }}">Book</a>
+        </div>
+        {% endfor %}
+    </div>
+    <a href="/customer_search">Back to Search</a>
+</body>
+</html>

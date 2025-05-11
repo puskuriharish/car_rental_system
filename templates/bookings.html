@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Booking Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #333;
+            padding: 15px;
+        }
+
+        .header .profile-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+        }
+
+        .nav-links a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 90%;
+            margin: 20px auto;
+            border-collapse: collapse;
+            background-color: white;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        th, td {
+            padding: 12px;
+            text-align: center;
+            border: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #333;
+            color: white;
+        }
+
+        button {
+            border: none;
+            padding: 8px 12px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        .approve-btn {
+            background-color: green;
+            color: white;
+        }
+
+        .reject-btn {
+            background-color: red;
+            color: white;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <a href="/reset_password">
+        <img class="profile-icon" src="data:image/png;base64,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" alt="Profile Icon">
+    </a>
+    <div class="nav-links">
+        <a href="/admin_home">Dashboard</a>
+        <a href="/view_customers">View Customers</a>
+        <a href="/add_car">Add Car</a>
+        <a href="/bookings">Bookings</a>
+        <a href="/search">Search</a>
+        <a href="/logout">Logout</a>
+    </div>
+</div>
+
+<table>
+    <tr>
+        <th>Booking ID</th>
+        <th>Customer</th>
+        <th>Car</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Total Price</th>
+        <th>Status</th>
+        <th>Action</th>
+    </tr>
+    {% for booking in bookings %}
+    <tr>
+        <td>{{ booking[0] }}</td>
+        <td>{{ booking[1] }}</td>
+        <td>{{ booking[2] }}</td>
+        <td>{{ booking[3] }}</td>
+        <td>{{ booking[4] }}</td>
+        <td>${{ booking[5] }}</td>
+        <td>{{ booking[6] }}</td>
+        <td>
+            {% if booking[6] == "Pending" %}
+                <a href="{{ url_for('update_booking', booking_id=booking[0], status='Approved') }}">
+                    <button class="approve-btn">Approve</button>
+                </a>
+                <a href="{{ url_for('update_booking', booking_id=booking[0], status='Rejected') }}">
+                    <button class="reject-btn">Reject</button>
+                </a>
+            {% else %}
+                {{ booking[6] }}
+            {% endif %}
+        </td>
+    </tr>
+    {% endfor %}
+</table>
+
+</body>
+</html>
